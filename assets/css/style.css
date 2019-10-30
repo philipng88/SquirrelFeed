@@ -82,9 +82,20 @@ nav a:hover {
 }
 
 .user_details {
-    width: 250px;
+    width: 27%;
     float: left;
     margin-bottom: 20px;
+}
+
+.user_details:first-of-type {
+    display: flex;
+}
+
+.user_details a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
 }
 
 .user_details img {
@@ -98,10 +109,15 @@ nav a:hover {
 }
 
 .user_details_left_right {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* .user_details_left_right {
     width: 125px;
     display: inline-block;
     position: absolute;
-}
+} */
 
 .main_column {
     float: right;
@@ -153,4 +169,24 @@ textarea:focus {
 
 .post_form input[type="submit"]:active {
     padding: 5px 4px 4px 5px;
+}
+
+.status_post {
+    width: 96%;
+    font-size: 15px;
+    padding: 0 5px;
+    min-height: 75px;
+}
+
+.post_profile_pic {
+    float: left;
+    margin-right: 7px;
+}
+
+.post_profile_pic img {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }

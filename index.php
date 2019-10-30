@@ -32,6 +32,10 @@ if (isset($_POST['post'])) {
             <input type="submit" name="post" id="post_button" value="Post">
             <hr>
         </form>
+        <?php
+        $post = new Post($con, $userLoggedIn);
+        $post->loadPostsFriends();
+        ?>
     </div>
 
 <?php
