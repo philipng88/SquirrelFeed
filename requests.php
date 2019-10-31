@@ -42,6 +42,8 @@ include("includes/header.php");
     ?>
 </div>
 
-<?php
-include("includes/footer.php");
-?>
+<!-- Close wrapper div from header -->
+</div>
+<?php include("includes/scripts.php"); ?>
+</body>
+</html>

@@ -321,7 +321,8 @@ textarea:focus {
     word-wrap: break-word;
 }
 
-.friend_btn {
+.friend_btn,
+.profile_add_post_btn {
     width: 90%;
     margin: 7px 0 0 7px;
 }
@@ -356,4 +357,29 @@ textarea:focus {
 #ignore_button {
     /* background-color: #e74c3c; */
     background-color: #f14668;
+}
+
+.delete_button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+    float: right;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    right: -15px;
+    position: relative;
+}
+
+.profile_main_column {
+    min-width: 675px;
+    float: left;
+    width: 70px;
+    z-index: -1;
+}
+
+.profile_info_bottom {
+    margin: 10px 0 0 7px;
 }
