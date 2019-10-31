@@ -13,6 +13,11 @@ body {
     background-color: #e6eae8;
 }
 
+a {
+    color: #20aae5;
+    text-decoration: none;
+}
+
 .top_bar {
     width: 100%;
     min-width: 1050px;
@@ -20,6 +25,7 @@ body {
     background-color: #20aae5;
     border-bottom: 0.25em solid #1894ca;
     margin: 0 0 10px 0;
+    display: -webkit-inline-box;
     display: inline-flex;
     position: fixed;
     z-index: 10;
@@ -55,7 +61,6 @@ nav a {
 }
 
 nav a:hover {
-    /* border-bottom: 7px solid #e67e22; */
     color: #fff;
 }
 
@@ -88,6 +93,7 @@ nav a:hover {
 }
 
 .user_details:first-of-type {
+    display: -webkit-box;
     display: flex;
 }
 
@@ -109,7 +115,8 @@ nav a:hover {
 }
 
 .user_details_left_right {
-    flex: 1;
+    -webkit-box-flex: 1;
+            flex: 1;
     overflow: hidden;
 }
 
@@ -176,6 +183,7 @@ textarea:focus {
     font-size: 15px;
     padding: 0 5px;
     min-height: 75px;
+    cursor: pointer;
 }
 
 .post_profile_pic {
@@ -189,4 +197,61 @@ textarea:focus {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+}
+
+#comment_iframe {
+    max-height: 250px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.comment_section {
+    padding: 0 5px 5px 5px;
+}
+
+.comment_section img {
+    margin: 0 3px 3px 3px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+#comment_form textarea {
+    width: 85%;
+    height: 35px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: #616060;
+    font-size: 14px;
+    margin: 3px 3px 3px 5px;
+    border-color: #d3d3d3;
+}
+
+#comment_form input[type="submit"] {
+    border: none;
+    background-color: #20aae5;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: 13%;
+    height: 35px;
+    margin-top: 3px;
+    position: absolute;
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    text-shadow: #73b6e2 0.5px 0.5px 0;
+}
+
+.newsfeedPostOptions {
+    padding: 0;
+    text-decoration: none;
+    color: #20aae5;
+    border: none;
 }
