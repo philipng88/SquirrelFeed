@@ -282,3 +282,78 @@ textarea:focus {
 .comment_unlike:hover {
     cursor: pointer;
 }
+
+.profile_left {
+    top: -10px;
+    width: 17%;
+    max-width: 240px;
+    min-width: 130px;
+    height: 100vh;
+    float: left;
+    position: relative;
+    background-color: #37b0e9;
+    border-right: 10px solid #83d6fe;
+    color: #cbeaf8;
+    margin-right: 20px;
+}
+
+.profile_left img {
+    min-width: 80px;
+    width: 55%;
+    margin: 20px;
+    border: 5px solid #83d6fe;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+}
+
+.profile_info {
+    display: list-item;
+    background-color: #2980b9;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.profile_info p {
+    margin-left: 20px;
+    word-wrap: break-word;
+}
+
+.friend_btn {
+    width: 90%;
+    margin: 7px 0 0 7px;
+}
+
+.req_sent_btn {
+    background-color: #bdc3c7;
+}
+
+.req_sent_btn:hover {
+    cursor: not-allowed;
+}
+
+#accept_button,
+#ignore_button {
+    width: 20%;
+    height: 28px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin: 5px;
+    border: none;
+    color: #fff;
+}
+
+#accept_button {
+    /* background-color: #2ecc71; */
+    background-color: #00d1b2;
+}
+
+#ignore_button {
+    /* background-color: #e74c3c; */
+    background-color: #f14668;
+}

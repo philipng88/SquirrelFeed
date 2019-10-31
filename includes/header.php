@@ -1,5 +1,7 @@
 <?php
 require 'config/config.php';
+include("includes/classes/User.php");
+include("includes/classes/Post.php");
 if (isset($_SESSION['username'])) {
     $userLoggedIn = $_SESSION['username'];
     $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
@@ -26,7 +28,7 @@ if (isset($_SESSION['username'])) {
             <a href="index.php">Squirrel Feed</a>
         </div>
         <nav>
-            <a href="<?php echo $userLoggedIn; ?>">
+            <a href="<?php echo $userLoggedIn; ?>" data-toggle="tooltip" data-placement="bottom" title="My Profile">
                 <?php echo $user['first_name']; ?>
             </a>
             <a href="index.php" data-toggle="tooltip" data-placement="bottom" title="Home">
@@ -38,7 +40,7 @@ if (isset($_SESSION['username'])) {
             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Notifications">
                 <i class="fas fa-bell fa-lg"></i>
             </a> 
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Friends">
+            <a href="requests.php" data-toggle="tooltip" data-placement="bottom" title="Friends">
                 <i class="fas fa-users fa-lg"></i>
             </a>   
             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Settings">
