@@ -15,7 +15,7 @@
 /* Selection Border */
 .jcrop-vline,
 .jcrop-hline {
-  background: #ffffff url("Jcrop.gif");
+  background: #fff;
   font-size: 0;
   position: absolute;
 }
@@ -166,6 +166,9 @@ img.jcrop-preview {
 
 /* Added my Reece Kenney */
 * {
+  transition: all 0.0s ease-in-out;
   -webkit-transition: all 0.0s ease-in-out;
   -moz-transition: all 0.0s ease-in-out;
+  -ms-transition: all 0.0s ease-in-out;
+  -o-transition: all 0.0s ease-in-out;
 }

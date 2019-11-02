@@ -2,6 +2,7 @@
 require 'config/config.php';
 include("includes/classes/User.php");
 include("includes/classes/Post.php");
+include("includes/classes/Message.php");
 if (isset($_SESSION['username'])) {
     $userLoggedIn = $_SESSION['username'];
     $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
@@ -35,7 +36,7 @@ if (isset($_SESSION['username'])) {
             <a href="index.php" data-toggle="tooltip" data-placement="bottom" title="Home">
                 <i class="fas fa-home fa-lg"></i>
             </a>
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Messages">
+            <a href="javascript:void(0)" onclick="getDropdownData(<?php echo $userLoggedIn; ?>, 'message')" data-toggle="tooltip" data-placement="bottom" title="Messages">
                 <i class="fas fa-envelope fa-lg"></i>
             </a>
             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Notifications">
@@ -51,6 +52,8 @@ if (isset($_SESSION['username'])) {
                 <i class="fas fa-sign-out-alt fa-lg"></i>
             </a>
         </nav>
+        <div class="dropdown_data_window"></div>
+        <input type="hidden" id="dropdown_data_type" value="">
     </div>
 
     <div class="wrapper">
