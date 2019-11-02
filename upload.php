@@ -1,14 +1,5 @@
 <?php 
-require 'config/config.php';
-include("includes/classes/User.php");
-include("includes/classes/Post.php");
-if (isset($_SESSION['username'])) {
-    $userLoggedIn = $_SESSION['username'];
-    $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
-    $user = mysqli_fetch_array($user_details_query);
-} else {
-    header("Location: register.php");
-}
+include("includes/header.php");
 
 $profile_id = $user['username'];
 $imgSrc = "";
@@ -19,10 +10,10 @@ $msg = "";
 	0 - Remove The Temp image if it exists
 ***********************************************************/
 	if (!isset($_POST['x']) && !isset($_FILES['image']['name']) ){
-		//Delete users' default image
+		//Delete users temp image
 			$temppath = 'assets/images/profile_pics/'.$profile_id.'_temp.jpeg';
 			if (file_exists ($temppath)){ @unlink($temppath); }
-		} 
+	} 
 
 
 if(isset($_FILES['image']['name'])){	
@@ -159,135 +150,66 @@ if (isset($_POST['x'])){
 														
 }// post x
 ?>
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-	<link rel="stylesheet" href="vendors/css/jquery.Jcrop.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" type="image/ico" href="favicon.ico">
-    <title>Squirrel Feed | Upload Picture</title>
-</head>
-<body>
-    <div class="top_bar">
-        <div class="logo">
-            <a href="index.php">Squirrel Feed</a>
-        </div>
-        <nav>
-            <a href="<?php echo $userLoggedIn; ?>" data-toggle="tooltip" data-placement="bottom" title="My Profile">
-                <?php echo $user['first_name']; ?>
-            </a>
-            <a href="index.php" data-toggle="tooltip" data-placement="bottom" title="Home">
-                <i class="fas fa-home fa-lg"></i>
-            </a>
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Messages">
-                <i class="fas fa-envelope fa-lg"></i>
-            </a>
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Notifications">
-                <i class="fas fa-bell fa-lg"></i>
-            </a> 
-            <a href="requests.php" data-toggle="tooltip" data-placement="bottom" title="Friends">
-                <i class="fas fa-users fa-lg"></i>
-            </a>   
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Settings">
-                <i class="fas fa-cog fa-lg"></i>
-            </a>
-            <a href="includes/handlers/logout.php" data-toggle="tooltip" data-placement="bottom" title="Logout">
-                <i class="fas fa-sign-out-alt fa-lg"></i>
-            </a>
-        </nav>
-    </div>
+<div id="Overlay"></div>
+<div class="main_column column">
+	<div id="formExample">
+	    <form action="upload.php" method="POST" enctype="multipart/form-data">
+			<p class="h4 mb-3">Upload Profile Picture</p>
+			<input type="file" name="image" id="image" class="form-control-file mb-2">
+			<input type="submit" value="Submit" class="btn btn-primary">
+	    </form><br /><br />
+	</div>   
 
-	<div class="wrapper">
-		<div id="Overlay"></div>
-		<div class="main_column column">
-			<div id="formExample">
-				<form action="upload.php" method="POST" enctype="multipart/form-data">
-					<p class="mb-3 h5">Upload Picture</p>
-					<div id="profile_picture_upload" class="file has-name is-info is-fullwidth">
-						<label class="file-label">
-							<input type="file" name="image" id="image" class="file-input">
-							<span class="file-cta">
-								<span class="file-icon">
-									<i class="fas fa-upload"></i>
-								</span>
-								<span class="file-label">
-									Choose a file...
-								</span>
-							</span>
-							<span class="file-name">
-								No file chosen
-							</span>
-						</label>
-					</div>
-					<input type="submit" value="Submit" class="button is-primary">
-					<p><b><?=$msg?></b></p>
-				</form><br /><br />
-				
-			</div>
-
-			<?php
-			if($imgSrc){ //if an image has been uploaded display cropping area?>
-				<script>
-					$('#Overlay').show();
-					$('#formExample').hide();
-				</script>
-				<div id="CroppingContainer">  
-					<div id="CroppingArea">	
-						<img src="<?=$imgSrc?>" border="0" id="jcrop_target">
-					</div>  
-					<div id="InfoArea">	
-						<p>          
-							<b>Crop Profile Image</b>
-							<br>
-							<br>
-							<span>
-								Crop / resize your uploaded profile image.
-								<br>
-								Once you are happy with your profile image, please click save.
-							</span>
-						</p>
-					</div>  
+    <?php
+    if($imgSrc){ //if an image has been uploaded display cropping area?>
+	    <script>
+	    	$('#Overlay').show();
+			$('#formExample').hide();
+	    </script>
+	    <div id="CroppingContainer">  
+	        <div id="CroppingArea">	
+	            <img src="<?=$imgSrc?>" border="0" id="jcrop_target">
+	        </div>  
+	        <div id="InfoArea">	
+	           <p>          
+					<b>Crop Profile Image</b>
 					<br>
-					<div id="CropImageForm">  
-						<form action="upload.php" method="post" onsubmit="return checkCoords();">
-							<input type="hidden" id="x" name="x" />
-							<input type="hidden" id="y" name="y" />
-							<input type="hidden" id="w" name="w" />
-							<input type="hidden" id="h" name="h" />
-							<input type="hidden" value="jpeg" name="type" /> <?php // $type ?> 
-							<input type="hidden" value="<?=$src?>" name="src" />
-							<input type="submit" value="Save" class="button is-success w-100">
-						</form>
-					</div>
-					<div id="CropImageForm2">  
-						<form action="upload.php" method="post" onsubmit="return cancelCrop();">
-							<input type="submit" value="Cancel" class="button is-danger w-100 mt-2">
-						</form>
-					</div>            
-				</div>
-			<?php 
-			} ?>
-		</div>
-		<?php if($result_path) { ?>
-			<img src="<?=$result_path?>" style="position:relative; margin:10px auto; width:150px; height:150px;" />
-		<?php } ?>
-		<br /><br />
-	<!-- wrapper closing div -->
-	</div>
-	<?php include("includes/scripts.php"); ?>
-	<script>
-		const fileInput = document.querySelector('#profile_picture_upload input[type=file]');
-		fileInput.onchange = () => {
-			if (fileInput.files.length > 0) {
-				const fileName = document.querySelector('#profile_picture_upload .file-name');
-				fileName.textContent = fileInput.files[0].name;
-			}
-		}
-	</script>
+					<br>
+	                <span>
+	                    Crop / resize your uploaded profile image.<br>
+	                    Once you are happy with your profile image then please click save.
+	                </span>
+	           </p>
+	        </div>  
+	        <br>
+	        <div id="CropImageForm">  
+	            <form action="upload.php" method="post" onsubmit="return checkCoords();">
+	                <input type="hidden" id="x" name="x" />
+	                <input type="hidden" id="y" name="y" />
+	                <input type="hidden" id="w" name="w" />
+	                <input type="hidden" id="h" name="h" />
+	                <input type="hidden" value="jpeg" name="type" /> <?php // $type ?> 
+	                <input type="hidden" value="<?=$src?>" name="src" />
+					<input type="submit" value="Save" class="btn btn-success w-100">
+	            </form>
+	        </div>
+	        <div id="CropImageForm2">  
+	            <form action="upload.php" method="post" onsubmit="return cancelCrop();">
+					<input type="submit" value="Cancel" class="btn btn-danger w-100 mt-1">
+	            </form>
+	        </div>            
+	    </div>
+	<?php 
+	} ?>
+</div>
+ 
+ <?php if($result_path) {
+	 ?>
+     <img src="<?=$result_path?>" style="position:relative; margin:10px auto; width:150px; height:150px;" />
+ <?php } ?>
+	<br>
+	<br>
+<!-- closing wrapper div  -->
+</div>
 </body>
 </html>

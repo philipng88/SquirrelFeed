@@ -36,7 +36,6 @@ if (isset($_POST['post'])) {
 
 <!-- Close wrapper div from header -->
 </div>
-<?php include("includes/scripts.php"); ?>
 <script src="vendors/js/bootbox.min.js"></script>
 <script src="assets/js/infinite_scroll.js"></script>
 </body>

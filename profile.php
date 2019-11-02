@@ -101,7 +101,6 @@ if (isset($_POST['respond_request'])) {
 
 <!-- Close wrapper div from header -->
 </div>
-<?php include("includes/scripts.php"); ?>
 <script src="vendors/js/bootbox.min.js"></script>
 <script>
     $(() => {

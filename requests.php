@@ -44,6 +44,5 @@ include("includes/header.php");
 
 <!-- Close wrapper div from header -->
 </div>
-<?php include("includes/scripts.php"); ?>
 </body>
 </html>
