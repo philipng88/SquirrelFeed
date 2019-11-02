@@ -1,5 +1,6 @@
 <?php 
 include("includes/header.php");
+$message_obj = new Message($con, $userLoggedIn);
 
 if (isset($_GET['profile_username'])) {
     $username = $_GET['profile_username'];
@@ -20,6 +21,20 @@ if (isset($_POST['add_friend'])) {
 
 if (isset($_POST['respond_request'])) {
     header("Location: requests.php");
+}
+
+if (isset($_POST['post_message'])) {
+    if (isset($_POST['message_body'])) {
+        $body = mysqli_real_escape_string($con, $_POST['message_body']);
+        $date = date("Y-m-d H:i:s");
+        $message_obj->sendMessage($username, $body, $date);
+    }
+    $link = '#profileTabs a[href="#messages_div"]';
+    echo "<script>
+            $(function() {
+                $('" . $link ."').tab('show');
+            });
+          </script>";
 }
 ?>
 
@@ -46,7 +61,8 @@ if (isset($_POST['respond_request'])) {
             $logged_in_user_obj = new User($con, $userLoggedIn);
             if ($userLoggedIn != $username) {
                 if ($logged_in_user_obj->isFriend($username)) {
-                    echo '<input type="submit" name="remove_friend" class="btn friend_btn btn-danger" value="Remove Friend"><br>';
+                    echo '<input type="submit" name="remove_friend" class="btn friend_btn btn-danger" value="Remove Friend"><br>
+                            <a class="btn friend_btn btn-secondary" href="messages.php?u=' . $username . '">Send Message</a>';
                 }
                 else if ($logged_in_user_obj->didReceiveRequest($username)) {
                     echo '<input type="submit" name="respond_request" class="btn friend_btn btn-warning" value="Respond to Request"><br>';
@@ -71,8 +87,40 @@ if (isset($_POST['respond_request'])) {
     </div>
 
     <div class="profile_main_column column">
-        <div class="posts_area"></div>
-        <img id="loading" src="assets/images/icons/loading.gif" alt="Loading icon">
+        <ul class="nav nav-tabs" role="tablist" id="profileTabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#wall_div" aria-controls="#wall_div" role="tab" data-toggle="tab">Wall</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#messages_div" aria-controls="#messages_div" role="tab" data-toggle="tab">Messages</a>
+            </li> -->
+            <?php if ($username !== $userLoggedIn) { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="#messages_div" aria-controls="#messages_div" role="tab" data-toggle="tab">Messages</a>
+                </li>
+            <?php } ?>
+        </ul>
+        <div class="tab-content mt-3">
+            <div role="tabpanel" class="tab-pane fade in show active" id="wall_div">
+                <div class="posts_area"></div>
+                <img id="loading" src="assets/images/icons/loading.gif" alt="Loading icon">
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="messages_div">
+                <?php 
+                echo "<h4>Your conversation with " . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
+                echo "<div class='loaded_messages' id='scroll_messages'>";
+                    echo $message_obj->getMessages($username);
+                echo "</div>";
+                ?>
+
+                <div class="message_post">
+                    <form action="" method="POST">
+                        <textarea name='message_body' id='message_textarea' placeholder='Write your message...'></textarea>
+                        <input type='submit' name='post_message' class='info' id='message_submit' value='Send' style="width: 10.75%;">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
@@ -101,7 +149,6 @@ if (isset($_POST['respond_request'])) {
 
 <!-- Close wrapper div from header -->
 </div>
-<script src="vendors/js/bootbox.min.js"></script>
 <script>
     $(() => {
         let userLoggedIn = "<?php echo $userLoggedIn; ?>";
@@ -181,6 +228,10 @@ if (isset($_POST['respond_request'])) {
             }
         });
     });
+</script>
+<script>
+    let div = document.getElementById("scroll_messages")
+    if (div != null) div.scrollTop = div.scrollHeight;
 </script>
 </body>
 </html>
