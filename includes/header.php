@@ -37,6 +37,10 @@ if (isset($_SESSION['username'])) {
             <a href="index.php">Squirrel Feed</a>
         </div>
         <nav>
+            <?php 
+            $messages = new Message($con, $userLoggedIn);
+            $num_messages = $messages->getUnreadNumber();
+            ?>
             <a href="<?php echo $userLoggedIn; ?>" data-toggle="tooltip" data-placement="bottom" title="My Profile">
                 <?php echo $user['first_name']; ?>
             </a>
@@ -44,7 +48,8 @@ if (isset($_SESSION['username'])) {
                 <i class="fas fa-home fa-lg"></i>
             </a>
             <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
-                <i class="fas fa-envelope fa-lg"></i>
+                <i class="fas fa-envelope fa-lg" id="messages_icon"></i>
+                <?php if ($num_messages > 0) echo '<span class="notification_badge" id="unread_message">' . $num_messages . '</span>'; ?>
             </a>
             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Notifications">
                 <i class="fas fa-bell fa-lg"></i>
@@ -62,5 +67,68 @@ if (isset($_SESSION['username'])) {
         <div class="dropdown_data_window" style="height: 0px; border: none;"></div>
         <input type="hidden" id="dropdown_data_type" value="">
     </div>
+
+    <script>
+	$(() =>{
+ 
+	    let userLoggedIn = '<?php echo $userLoggedIn; ?>';
+	    let dropdownInProgress = false;
+ 
+	    const loadPosts = () => {
+	        if(dropdownInProgress) { 
+				return;
+			}
+			
+			dropdownInProgress = true;
+ 
+		    let page = $('.dropdown_data_window').find('.nextPageDropdownData').val() || 1; 
+ 
+		    let pageName; 
+		    let type = $('#dropdown_data_type').val();
+ 
+			if(type == 'notification')
+				pageName = "ajax_load_notifications.php";
+			else if(type == 'message')
+				pageName = "ajax_load_messages.php";
+ 
+			$.ajax({
+				url: "includes/handlers/" + pageName,
+				type: "POST",
+				data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+				cache:false,
+ 
+				success: function(response) {
+ 
+					$('.dropdown_data_window').find('.nextPageDropdownData').remove(); 
+					$('.dropdown_data_window').find('.noMoreDropdownData').remove();
+ 
+					$('.dropdown_data_window').append(response);
+ 
+					dropdownInProgress = false;
+				}
+			});
+	    }
+ 
+	    const isElementInView = el => {
+	        let rect = el.getBoundingClientRect();
+ 
+	        return (
+	            rect.top >= 0 &&
+	            rect.left >= 0 &&
+	            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && //* or $(window).height()
+	            rect.right <= (window.innerWidth || document.documentElement.clientWidth) //* or $(window).width()
+	        );
+        }
+        
+        $(".dropdown_data_window").scroll(() => {
+	        let bottomElement = $(".dropdown_data_window a").last();
+		    let noMoreData = $('.dropdown_data_window').find('.noMoreDropdownData').val();
+ 
+	        if (isElementInView(bottomElement[0]) && noMoreData == 'false') {
+	            loadPosts();
+	        }
+	    });
+	});
+    </script>
 
     <div class="wrapper">
