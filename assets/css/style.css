@@ -678,3 +678,44 @@ textarea:focus {
 .search_results_footer a {
     color: #fff;
 }
+
+.search_result {
+    padding: 10px;
+    height: 100px;
+}
+
+.searchPageFriendButtons input[type="submit"] {
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: #fff;
+}
+
+.alt-btn-danger {
+    background-color: #e74c3c;
+    
+}
+
+.alt-btn-warning {
+    background-color: #f0ad4e;
+}
+
+.alt-btn-default {
+    background-color: #bdc3c7;
+}
+
+.alt-btn-default:hover {
+    cursor: not-allowed;
+}
+
+.alt-btn-success {
+    background-color: #2ecc71;
+}
+
+.alt-btn-info {
+    background-color: #3498db;
+}

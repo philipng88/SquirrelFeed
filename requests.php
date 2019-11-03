@@ -3,6 +3,24 @@ include("includes/header.php");
 ?>
 
 <div class="main_column column" id="main_column">
+    <h4>Requests sent</h4>
+        <?php
+        $pending = mysqli_query($con, "SELECT user_to FROM friend_requests WHERE user_from='$userLoggedIn'");
+        if (mysqli_num_rows($pending) > 0) {
+            while ($row = mysqli_fetch_array($pending)) {
+                $sent = $row['user_to'];
+                $dataQuery = mysqli_query($con, "SELECT * FROM users WHERE username='$sent'");
+                    while ($name = mysqli_fetch_array($dataQuery)) {
+                    echo "<a href='" . $name['username'] . "'><img src='" . $name['profile_pic'] . "' style='height: 50px;'></a>
+                        <a href='" . $name['username'] . "'>" . $name['first_name'] . " " . $name['last_name'] . "</a><br>";
+                    }
+                }
+            }
+        else {
+            echo "You have no pending requests at this time";
+            }	
+        ?>
+    <hr>
     <h4>Friend Requests</h4>
     <?php
     $query = mysqli_query($con, "SELECT * FROM friend_requests WHERE user_to='$userLoggedIn'");
