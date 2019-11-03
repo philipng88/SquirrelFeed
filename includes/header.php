@@ -37,6 +37,23 @@ if (isset($_SESSION['username'])) {
         <div class="logo">
             <a href="index.php">Squirrel Feed</a>
         </div>
+        <div class="search">
+            <form action="search.php" method="GET" name="search_form">
+                <input 
+                    type="text" 
+                    onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" 
+                    name="q" 
+                    placeholder="Search..." 
+                    autocomplete="off"
+                    id="search_text_input"
+                >
+                <div class="button_holder">
+                    <img src="assets/images/icons/magnifying-glass.png" alt="Magnifying glass icon">
+                </div>
+            </form>
+            <div class="search_results"></div>
+            <div class="search_results_footer_empty"></div>
+        </div>
         <nav>
             <?php 
             $messages = new Message($con, $userLoggedIn);
@@ -55,11 +72,11 @@ if (isset($_SESSION['username'])) {
                 <i class="fas fa-home fa-lg"></i>
             </a>
             <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
-                <i class="fas fa-envelope fa-lg" id="messages_icon"></i>
+                <i class="far fa-envelope fa-lg" id="messages_icon"></i>
                 <?php if ($num_messages > 0) echo '<span class="notification_badge" id="unread_message">' . $num_messages . '</span>'; ?>
             </a>
             <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
-                <i class="fas fa-bell fa-lg" id="notifications_icon"></i>
+                <i class="far fa-bell fa-lg" id="notifications_icon"></i>
                 <?php if ($num_notifications > 0) echo '<span class="notification_badge" id="unread_notification">' . $num_notifications . '</span>'; ?>
             </a> 
             <a href="requests.php" data-toggle="tooltip" data-placement="bottom" title="Friends">
