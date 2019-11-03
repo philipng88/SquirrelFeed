@@ -3,6 +3,7 @@ require 'config/config.php';
 include("includes/classes/User.php");
 include("includes/classes/Post.php");
 include("includes/classes/Message.php");
+include("includes/classes/Notification.php");
 if (isset($_SESSION['username'])) {
     $userLoggedIn = $_SESSION['username'];
     $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
@@ -40,6 +41,12 @@ if (isset($_SESSION['username'])) {
             <?php 
             $messages = new Message($con, $userLoggedIn);
             $num_messages = $messages->getUnreadNumber();
+
+            $notifications = new Notification($con, $userLoggedIn);
+            $num_notifications = $notifications->getUnreadNumber();
+
+            $user_obj = new User($con, $userLoggedIn);
+            $num_requests = $user_obj->getNumberOfFriendRequests();
             ?>
             <a href="<?php echo $userLoggedIn; ?>" data-toggle="tooltip" data-placement="bottom" title="My Profile">
                 <?php echo $user['first_name']; ?>
@@ -51,11 +58,13 @@ if (isset($_SESSION['username'])) {
                 <i class="fas fa-envelope fa-lg" id="messages_icon"></i>
                 <?php if ($num_messages > 0) echo '<span class="notification_badge" id="unread_message">' . $num_messages . '</span>'; ?>
             </a>
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Notifications">
-                <i class="fas fa-bell fa-lg"></i>
+            <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
+                <i class="fas fa-bell fa-lg" id="notifications_icon"></i>
+                <?php if ($num_notifications > 0) echo '<span class="notification_badge" id="unread_notification">' . $num_notifications . '</span>'; ?>
             </a> 
             <a href="requests.php" data-toggle="tooltip" data-placement="bottom" title="Friends">
                 <i class="fas fa-users fa-lg"></i>
+                <?php if($num_requests > 0) echo '<span class="notification_badge" id="unread_requests">' . $num_requests . '</span>'; ?>
             </a>   
             <a href="#" data-toggle="tooltip" data-placement="bottom" title="Settings">
                 <i class="fas fa-cog fa-lg"></i>

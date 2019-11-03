@@ -541,6 +541,27 @@ textarea:focus {
     text-decoration: none;
 }
 
+.resultDisplayNotification {
+    height: auto;
+    color: #1485bd;
+}
+
+.resultDisplayNotification img {
+    height: 40px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin: 1px 12px 0 2px;
+    float: left;
+}
+
+.timestamp_smaller {
+    font-size: 85%;
+    margin: 0;
+}
+
 .liveSearchProfilePic img{
     height: 50px;
     border-radius: 25px;
@@ -575,7 +596,10 @@ textarea:focus {
 
 #messages_icon:hover {
     color: #F5C276;
-    font-weight: bolder;
+}
+
+#notifications_icon:hover {
+    color: yellow;
 }
 
 .notification_badge {
