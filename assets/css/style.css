@@ -684,7 +684,8 @@ textarea:focus {
     height: 100px;
 }
 
-.searchPageFriendButtons input[type="submit"] {
+.searchPageFriendButtons input[type="submit"],
+.settings_submit {
     border: none;
     padding: 7px 12px;
     border-radius: 5px;
@@ -718,4 +719,23 @@ textarea:focus {
 
 .alt-btn-info {
     background-color: #3498db;
+}
+
+#small_profile_pic {
+    height: 55px;
+    margin: 1px 12px 0 2px;
+    float: left;
+}
+
+.settings_input {
+    border: 1px solid #ccc;
+    height: 20px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
 }
