@@ -58,6 +58,8 @@ include("includes/header.php");
         }
     }
     ?>
+    <hr>
+    <a href="friends.php" class="btn btn-info">My Friends</a>
 </div>
 
 <!-- Close wrapper div from header -->

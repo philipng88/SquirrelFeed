@@ -125,5 +125,11 @@ class User {
         }
         return $mutualFriends;
     }
+
+    public function getFriendsList() {
+        $friend_array_string = $this->user['friend_array'];
+        $friend_array_string = trim($friend_array_string, ",");
+        return explode(",", $friend_array_string);
+    }
 }
 ?>
