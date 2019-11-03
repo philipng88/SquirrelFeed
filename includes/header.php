@@ -83,7 +83,7 @@ if (isset($_SESSION['username'])) {
                 <i class="fas fa-users fa-lg"></i>
                 <?php if($num_requests > 0) echo '<span class="notification_badge" id="unread_requests">' . $num_requests . '</span>'; ?>
             </a>   
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Settings">
+            <a href="settings.php" data-toggle="tooltip" data-placement="bottom" title="Settings">
                 <i class="fas fa-cog fa-lg"></i>
             </a>
             <a href="includes/handlers/logout.php" data-toggle="tooltip" data-placement="bottom" title="Logout">
