@@ -750,3 +750,11 @@ textarea:focus {
     -o-border-radius: 25px;
     margin: 5px;
 }
+
+.postedImage img {
+    /* display: block; */
+    max-height: 300px;
+    max-width: 100%;
+    /* margin: 5px auto; */
+    margin-top: 12px;
+}

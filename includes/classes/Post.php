@@ -8,14 +8,14 @@ class Post {
         $this->user_obj = new User($con, $user);
     }
 
-    public function submitPost($body, $user_to) {
+    public function submitPost($body, $user_to, $imageName) {
         $body = strip_tags($body);
         $body = mysqli_real_escape_string($this->con, $body);
         $body = str_replace('\r\n', "\n", $body);
         $body = nl2br($body);
         $check_empty = preg_replace('/\s+/', '', $body);
         
-        if ($check_empty != "") {
+        if ($check_empty != "" || $imageName != "") {
             // Get current date and time
             $date_added = date("Y-m-d H:i:s");
 
@@ -28,7 +28,7 @@ class Post {
             }
 
             // Insert post
-            $query = mysqli_query($this->con, "INSERT INTO posts VALUES('', '$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0')");
+            $query = mysqli_query($this->con, "INSERT INTO posts VALUES('', '$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0', '$imageName')");
             $returned_id = mysqli_insert_id($this->con);
 
             // Insert notification
@@ -68,6 +68,7 @@ class Post {
                 $body = $row['body'];
                 $added_by = $row['added_by'];
                 $date_time = $row['date_added'];
+                $imagePath = $row['image'];
                 
                 if ($row['user_to'] == "none") {
                     $user_to = "";
@@ -180,6 +181,12 @@ class Post {
                         }
                     }
 
+                    if ($imagePath != "") {
+                        $imageDiv = "<div class='postedImage'><img src='$imagePath'></div>";
+                    } else {
+                        $imageDiv = "";
+                    }
+
                     $str .= "<div class='status_post' onClick='javascript:toggle$id()'>
                                 <div class='post_profile_pic'>
                                     <img src='$profile_pic' width='50'>
@@ -191,6 +198,7 @@ class Post {
                                 <div id='post_body' class='mt-1'>
                                     $body
                                     <br>
+                                    $imageDiv
                                     <br>
                                 </div>
                                 <div class='newsfeedPostOptions'>
