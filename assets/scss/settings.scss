@@ -1,0 +1,21 @@
+#small_profile_pic {
+    height: 55px;
+    margin: 1px 12px 0 2px;
+    float: left;
+}
+
+.settings_submit {
+    border: none;
+    padding: 7px 12px;
+    @include border-radius-five;
+    color: #fff;
+}
+
+.settings_input {
+    border: 1px solid #ccc;
+    height: 20px;
+    padding: 4px 6px;
+    @include border-radius-four;
+    font-size: 14px;
+    line-height: 20px;
+}

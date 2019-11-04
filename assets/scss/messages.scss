@@ -1,0 +1,68 @@
+#message_submit {
+    border: none;
+    @include border-radius-three;
+    background-color: #3498db;
+    font-family: 'Bellota-BoldItalic', sans-serif;
+    color: #fff;
+    text-shadow: #73b6e2 0.5px 0.5px 0;
+    font-size: 90%;
+    position: absolute;
+    outline: 0;
+    margin: 0;
+    height: 41px;
+    width: 12.75%;
+}
+
+#message_textarea {
+    width: 80%;
+    margin-right: 8px;
+    @include border-radius-five;
+    border: 1px solid #d3d3d3;
+    font-size: 12px;
+}
+
+.message {
+    display: inline-block;
+    color: #fff;
+    border: 1px solid black;
+    @include border-radius-five;
+    padding: 5px 10px;
+    /* margin-bottom: 5px; */
+}
+
+#my_message {
+    background-color: #3498db;
+    border-color: #2980b9;
+    float: right;
+} 
+
+#their_message {
+    background-color: #2ecc71;
+    border-color: #27ae60;
+    float: left;
+}
+
+.loaded_messages {
+    height: 65%;
+    min-height: 300px;
+    max-height: 400px;
+    overflow: scroll;
+    margin-bottom: 10px;
+}
+
+.loaded_conversations {
+    max-height: 216px;
+    overflow: scroll;
+}
+
+.user_found_messages {
+    border-bottom: 1px solid #d3d3d3;
+    padding: 8px 8px 10px 8px;
+    &:hover {
+        background-color: #d3d3d3;
+    }
+    img {
+        height: 35px;
+        float: left;
+    }
+}

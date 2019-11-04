@@ -1,0 +1,65 @@
+.friend_btn,
+.profile_add_post_btn {
+    width: 90%;
+    margin: 7px 0 0 7px;
+}
+
+.req_sent_btn {
+    background-color: #bdc3c7;
+    &:hover {
+        cursor: not-allowed;
+    }
+}
+
+#accept_button,
+#ignore_button {
+    width: 20%;
+    height: 28px;
+    @include border-radius-five;
+    margin: 5px;
+    border: none;
+    color: #fff;
+}
+
+#accept_button {
+    /* background-color: #2ecc71; */
+    background-color: #00d1b2;
+}
+
+#ignore_button {
+    /* background-color: #e74c3c; */
+    background-color: #f14668;
+}
+
+.delete_button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+    float: right;
+    @include border-radius-four;
+    right: -15px;
+    position: relative;
+}
+
+.alt-btn-danger {
+    background-color: #e74c3c;
+}
+
+.alt-btn-warning {
+    background-color: #f0ad4e;
+}
+
+.alt-btn-default {
+    background-color: #bdc3c7;
+    &:hover {
+        cursor: not-allowed;
+    }
+}
+
+.alt-btn-success {
+    background-color: #2ecc71;
+}
+
+.alt-btn-info {
+    background-color: #3498db;
+}

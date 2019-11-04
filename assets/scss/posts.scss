@@ -1,0 +1,70 @@
+.post_form {
+    width: 100%;
+    textarea {
+        width: 81%;
+        height: 60px;
+        @include border-radius-three;
+        margin-right: 5px;
+        border: 1px solid #d3d3d3;
+        font-size: 12px;
+        padding: 5px;
+        &:focus {
+            outline: 0;
+        }
+    }
+    input[type="submit"] {
+        border: none;
+        @include border-radius-three;
+        background-color: #3498db;
+        font-family: 'Bellota-BoldItalic', sans-serif;
+        color: #fff;
+        text-shadow: #73b6e2 0.5px 0.5px 0;
+        font-size: 90%;
+        position: absolute;
+        outline: 0;
+        margin: 0;
+        width: 11%;
+        height: 60px;
+        &:active {
+            padding: 5px 4px 4px 5px;
+        }
+    }
+}
+
+.status_post {
+    width: 96%;
+    font-size: 15px;
+    padding: 0 5px;
+    min-height: 75px;
+    cursor: pointer;
+    
+    .post_profile_pic {
+        float: left;
+        margin-right: 7px;
+        img {
+            @include border-radius-five;
+        }
+    }
+}
+
+.newsfeedPostOptions {
+    padding: 0;
+    text-decoration: none;
+    color: #20aae5;
+    border: none;
+    iframe {
+        border: 0px; 
+        height: 17px;
+        width: 120px;
+    }
+}
+
+.postedImage {
+    img {
+        /* display: block; */
+        max-height: 300px;
+        max-width: 100%;
+        /* margin: 5px auto; */
+        margin-top: 12px;
+    }
+}
