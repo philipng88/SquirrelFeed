@@ -19,20 +19,20 @@ include("includes/form_handlers/settings_handler.php");
     $email = $row['email'];
     ?>
     <form action="settings.php" method="POST">
-        First Name: <input type="text" name="first_name" class="settings_input mb-2" value="<?php echo $first_name; ?>"><br>
-        Last Name: <input type="text" name="last_name" class="settings_input mb-2" value="<?php echo $last_name; ?>"><br>
-        Email: <input type="email" name="email" class="settings_input mb-2" value="<?php echo $email; ?>"><br>
-        <?php echo $message; ?>
-        <input type="submit" value="Submit" name="update_details" class="save_account_details alt-btn-info settings_submit"><br>
+        First Name: <input type="text" name="first_name" class="settings_input mb-2" value="<?php echo $first_name; ?>" autocomplete="off"><br>
+        Last Name: <input type="text" name="last_name" class="settings_input mb-2" value="<?php echo $last_name; ?>" autocomplete="off"><br>
+        Email: <input type="email" name="email" class="settings_input mb-2" value="<?php echo $email; ?>" autocomplete="off"><br>
+        <strong><?php echo $message; ?></strong>
+        <input type="submit" value="Submit" name="update_details" class="alt-btn-info settings_submit"><br>
     </form>
 
     <h4 class="mt-3">Change Password</h4>
     <form action="settings.php" method="POST">
-        Current Password: <input type="password" name="current_password" class="settings_input mb-2"><br>
-        New Password: <input type="password" name="new_password_1" class="settings_input mb-2"><br>
-        Confirm New Password: <input type="password" name="new_password_2" class="settings_input mb-2"><br>
-        <?php echo $password_message; ?>
-        <input type="submit" value="Submit" name="update_password" class="save_account_details alt-btn-info settings_submit"><br>
+        Current Password: <input type="password" name="current_password" class="settings_input mb-2" required><br>
+        New Password: <input type="password" name="new_password_1" class="settings_input mb-2" required><br>
+        Confirm New Password: <input type="password" name="new_password_2" class="settings_input mb-2" required><br>
+        <strong><?php echo $password_message; ?></strong>
+        <input type="submit" value="Submit" name="update_password" class="alt-btn-info settings_submit"><br>
     </form>
 
     <h4 class="mt-3">Close Account</h4>
