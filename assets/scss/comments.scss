@@ -61,3 +61,16 @@
 .comment_unlike:hover {
     cursor: pointer;
 }
+
+.delete_comment {
+    float: right;
+    padding: 0;
+    height: 16px;
+    width: 16px;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    &:hover {
+        cursor: pointer;
+    }
+}

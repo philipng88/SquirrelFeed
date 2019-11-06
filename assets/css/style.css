@@ -228,6 +228,17 @@ a {
 .comment_unlike:hover {
   cursor: pointer; }
 
+.delete_comment {
+  float: right;
+  padding: 0;
+  height: 16px;
+  width: 16px;
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545; }
+  .delete_comment:hover {
+    cursor: pointer; }
+
 #friendsListProfilePic {
   height: 40px;
   width: 40px;

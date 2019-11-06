@@ -16,12 +16,14 @@ if (isset($_SESSION['username'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-	<style type="text/css">
-		* { font-size: 12px; font-family: Arial, Helvetica, sans-serif;}
+	<style>
+		* { font-size: 12px; font-family: Arial, Helvetica, sans-serif; }
+        a { text-decoration: none; }
 	</style>
 
 	<?php 
@@ -60,7 +62,7 @@ if (isset($_SESSION['username'])) {
             }
         }
         
-        echo "<p>Comment Posted!</p>";
+        echo "<p><strong>Comment Posted!</strong></p>";
 	}
 	?>
 
@@ -75,11 +77,19 @@ if (isset($_SESSION['username'])) {
 
 	if ($count != 0) {
 		while ($comment = mysqli_fetch_array($get_comments)) {
+            $table_id = $comment['id'];
 			$comment_body = $comment['post_body'];
 			$posted_to = $comment['posted_to'];
 			$posted_by = $comment['posted_by'];
 			$date_added = $comment['date_added'];
-			$removed = $comment['removed'];
+            $removed = $comment['removed'];
+            
+            if ($posted_by === $userLoggedIn) {
+                $delete_button = "<button class='delete_comment' id='$table_id'><i class='fas fa-times'></i></button>";
+            } else {
+                $delete_button = "";
+            }
+
 			$date_time_now = date("Y-m-d H:i:s");
             $start_date = new DateTime($date_added);
             $end_date = new DateTime($date_time_now);
@@ -147,7 +157,7 @@ if (isset($_SESSION['username'])) {
 				<a href="<?php echo $posted_by; ?>" target="_parent">
 					<b><?php echo $user_obj->getFirstAndLastName(); ?></b>
 				</a>
-				&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $time_message . "<br>" . $comment_body; ?>
+				&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $time_message . $delete_button . "<br>" . $comment_body; ?>
 				<hr>
 			</div>
 	<?php
@@ -160,6 +170,7 @@ if (isset($_SESSION['username'])) {
 		<textarea name="post_body"></textarea>
 		<input type="submit" name="postComment<?php echo $post_id; ?>" value="Post">
 	</form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<script>
 		toggle = () => {
 			let element = document.getElementById("comment_section");
@@ -168,7 +179,17 @@ if (isset($_SESSION['username'])) {
 			} else {
 				element.style.display = "block";
 			}
-		}
+        }
+        
+        $(function() {
+            $(".delete_comment").on("click", function(e) {
+                let tableId = this.id;
+                let postId = '<?php echo $post_id; ?>';
+                $.post("includes/handlers/delete_comment.php", { id: tableId }, function() {
+                    window.location.href = "comment_frame.php?post_id=" + postId;
+                });
+            });
+        })
 	</script>
 </body>
 </html>
