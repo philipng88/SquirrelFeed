@@ -250,9 +250,6 @@ a {
   color: #fff;
   text-shadow: #73b6e2 0.5px 0.5px 0;
   font-size: 90%;
-  position: absolute;
-  outline: 0;
-  margin: 0;
   height: 41px;
   width: 12.75%; }
 
@@ -400,11 +397,8 @@ a {
     color: #fff;
     text-shadow: #73b6e2 0.5px 0.5px 0;
     font-size: 90%;
-    position: absolute;
-    outline: 0;
-    margin: 0;
-    width: 11%;
-    height: 60px; }
+    width: 15%;
+    height: 40px; }
     .post_form input[type="submit"]:active {
       padding: 5px 4px 4px 5px; }
 

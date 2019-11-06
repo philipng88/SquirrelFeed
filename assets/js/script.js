@@ -29,6 +29,10 @@ $(document).ready(() => {
     $('.button_holder').on('click', () => {
         document.search_form.submit();
     })
+
+    $("#post_text").emojioneArea({ pickerPosition: "bottom" });
+    $("#post_form_content").emojioneArea({ pickerPosition: "right" });
+    $("#message_textarea").emojioneArea();
 });
 
 $(document).click(e => {

@@ -115,8 +115,8 @@ if (isset($_POST['post_message'])) {
 
                 <div class="message_post">
                     <form action="" method="POST">
-                        <textarea name='message_body' id='message_textarea' placeholder='Write your message...'></textarea>
-                        <input type='submit' name='post_message' class='info' id='message_submit' value='Send' style="width: 10.75%;">
+                        <textarea name='message_body' id='message_textarea' placeholder='Write your message...' class="mb-1"></textarea>
+                        <input type='submit' name='post_message' class='info float-right' id='message_submit' value='Send'>
                     </form>
                 </div>
             </div>
