@@ -89,6 +89,21 @@ require 'includes/form_handlers/login_handler.php';
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="assets/js/register.js"></script>
+    <!-- <script src="assets/js/register.js"></script> -->
+    <script>
+        $(document).ready(() => {
+            $("#signup").click(() => {
+                $("#login_form").slideUp("slow", () => {
+                    $("#register_form").slideDown("slow")
+                })
+            })
+
+            $("#signin").click(() => {
+                $("#register_form").slideUp("slow", () => {
+                    $("#login_form").slideDown("slow")
+                })
+            })
+        });
+    </script>
 </body>
 </html>

@@ -64,10 +64,10 @@ if (isset($_SESSION['username'])) {
 	}
 	?>
 
-	<form action="comment_frame.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">
+	<!-- <form action="comment_frame.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">
 		<textarea name="post_body"></textarea>
 		<input type="submit" name="postComment<?php echo $post_id; ?>" value="Post">
-	</form>
+	</form> -->
 
 	<?php 
 	$get_comments = mysqli_query($con, "SELECT * FROM comments WHERE post_id='$post_id' ORDER BY id ASC");
@@ -155,7 +155,11 @@ if (isset($_SESSION['username'])) {
 	} else {
 		echo "<center><br><br>No Comments Yet...</center>";
 	}
-	?>
+    ?>
+    <form action="comment_frame.php?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="POST">
+		<textarea name="post_body"></textarea>
+		<input type="submit" name="postComment<?php echo $post_id; ?>" value="Post">
+	</form>
 	<script>
 		toggle = () => {
 			let element = document.getElementById("comment_section");

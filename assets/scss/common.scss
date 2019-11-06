@@ -5,7 +5,10 @@ body {
 
 a {
     color: #20aae5;
-    text-decoration: none !important;
+    &:hover {
+        text-decoration: none;
+        color: #20aae5;
+    }
 }
 
 .main_column {

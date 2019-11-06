@@ -9,8 +9,10 @@ body {
   background-color: #e6eae8; }
 
 a {
-  color: #20aae5;
-  text-decoration: none !important; }
+  color: #20aae5; }
+  a:hover {
+    text-decoration: none;
+    color: #20aae5; }
 
 .main_column {
   float: right;
@@ -204,6 +206,8 @@ a {
   position: absolute;
   font-family: 'Bellota-BoldItalic', sans-serif;
   text-shadow: #73b6e2 0.5px 0.5px 0; }
+  #comment_form input[type="submit"]:hover {
+    cursor: pointer; }
 
 .comment_like {
   background-color: transparent;
