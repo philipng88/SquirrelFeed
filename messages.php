@@ -76,8 +76,8 @@ if (isset($_POST['post_message']) && $user_to !== $userLoggedIn) {
             <?php
                 echo "<div class='results'></div>";
             } else {
-                echo "<textarea name='message_body' id='message_textarea' placeholder='Write your message...'></textarea>";
-                echo "<input type='submit' name='post_message' class='info' id='message_submit' value='Send'>";
+                echo "<textarea name='message_body' id='message_textarea' placeholder='Write your message...' class='mb-1'></textarea>";
+                echo "<input type='submit' name='post_message' class='info float-right' id='message_submit' value='Send'>";
             }
             ?>
         </form>
