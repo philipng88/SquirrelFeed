@@ -52,21 +52,49 @@ require 'includes/form_handlers/login_handler.php';
             <div id="register_form">
                 <form action="register.php" method="POST">
                     <!-- <input type="text" name="reg_fname" placeholder="First Name" required> -->
-                    <input type="text" name="reg_fname" placeholder="First Name" value="<?php if (isset($_SESSION['reg_fname'])) { echo $_SESSION['reg_fname']; } ?>" required>
+                    <input 
+                        type="text" 
+                        name="reg_fname" 
+                        placeholder="First Name" 
+                        value="<?php if (isset($_SESSION['reg_fname'])) { echo $_SESSION['reg_fname']; } ?>" 
+                        required
+                        autocomplete="off"
+                    >
                     <br>
                     <?php if (in_array("First name must be between 2 and 25 characters<br>", $error_array)) echo "First name must be between 2 and 25 characters<br>"; ?>
                     
                     <!-- <input type="text" name="reg_lname" placeholder="Last Name" required> -->
-                    <input type="text" name="reg_lname" placeholder="Last Name" value="<?php if (isset($_SESSION['reg_lname'])) { echo $_SESSION['reg_lname']; } ?>" required>
+                    <input 
+                        type="text" 
+                        name="reg_lname" 
+                        placeholder="Last Name" 
+                        value="<?php if (isset($_SESSION['reg_lname'])) { echo $_SESSION['reg_lname']; } ?>" 
+                        required
+                        autocomplete="off"
+                    >
                     <br>
                     <?php if (in_array("Last name must be between 2 and 25 characters<br>", $error_array)) echo "Last name must be between 2 and 25 characters<br>"; ?>
 
                     <!-- <input type="email" name="reg_email" placeholder="Email" required> -->
-                    <input type="email" name="reg_email" placeholder="Email" value="<?php if (isset($_SESSION['reg_email'])) { echo $_SESSION['reg_email']; } ?>" required>
+                    <input 
+                        type="email" 
+                        name="reg_email" 
+                        placeholder="Email" 
+                        value="<?php if (isset($_SESSION['reg_email'])) { echo $_SESSION['reg_email']; } ?>" 
+                        required
+                        autocomplete="off"
+                    >
                     <br>
 
                     <!-- <input type="email" name="reg_email2" placeholder="Confirm Email" required> -->
-                    <input type="email" name="reg_email2" placeholder="Confirm Email" value="<?php if (isset($_SESSION['reg_email2'])) { echo $_SESSION['reg_email2']; } ?>" required>
+                    <input 
+                        type="email" 
+                        name="reg_email2" 
+                        placeholder="Confirm Email" 
+                        value="<?php if (isset($_SESSION['reg_email2'])) { echo $_SESSION['reg_email2']; } ?>" 
+                        required
+                        autocomplete="off"
+                    >
                     <br>
                     <?php if (in_array("Email already in use<br>", $error_array)) echo "Email already in use<br>";
                     else if (in_array("Invalid email format<br>", $error_array)) echo "Invalid email format<br>";

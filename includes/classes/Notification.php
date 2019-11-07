@@ -151,7 +151,7 @@ class Notification {
         }
 
         $link = "post.php?id=" . $post_id;
-        $insert_query = mysqli_query($this->con, "INSERT INTO notifications VALUES('', '$user_to', '$userLoggedIn', '$message', '$link', '$date_time', 'no', 'no')");
+        $insert_query = mysqli_query($this->con, "INSERT INTO notifications VALUES(null, '$user_to', '$userLoggedIn', '$message', '$link', '$date_time', 'no', 'no')");
     }
 }
 ?>

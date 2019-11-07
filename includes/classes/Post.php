@@ -28,7 +28,7 @@ class Post {
             }
 
             // Insert post
-            $query = mysqli_query($this->con, "INSERT INTO posts VALUES('', '$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0', '$imageName')");
+            $query = mysqli_query($this->con, "INSERT INTO posts VALUES(null, '$body', '$added_by', '$user_to', '$date_added', 'no', 'no', '0', '$imageName')");
             $returned_id = mysqli_insert_id($this->con);
 
             // Insert notification

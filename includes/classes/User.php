@@ -103,7 +103,7 @@ class User {
 
     public function sendRequest($user_to) {
         $user_from = $this->user['username'];
-        $query = mysqli_query($this->con, "INSERT INTO friend_requests VALUES('', '$user_to', '$user_from')");
+        $query = mysqli_query($this->con, "INSERT INTO friend_requests VALUES(null, '$user_to', '$user_from')");
     }
 
     public function getMutualFriends($user_to_check) {
