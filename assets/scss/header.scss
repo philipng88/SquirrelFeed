@@ -38,6 +38,12 @@
                 color: #fff;
             }
         }
+        #navProfilePic {
+            height: 30px;
+            width: 30px;
+            @include border-radius-twenty-five;
+            margin: -10px 0 -5px -10px;
+        }
     }
 }
 

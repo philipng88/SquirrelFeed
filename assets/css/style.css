@@ -94,6 +94,15 @@ a {
       margin-right: 5px; }
       .top_bar nav a:hover {
         color: #fff; }
+    .top_bar nav #navProfilePic {
+      height: 30px;
+      width: 30px;
+      border-radius: 25px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      -ms-border-radius: 25px;
+      -o-border-radius: 25px;
+      margin: -10px 0 -5px -10px; }
 
 .wrapper {
   margin: 0 auto;
@@ -242,12 +251,12 @@ a {
 #friendsListProfilePic {
   height: 40px;
   width: 40px;
+  margin: 5px;
   border-radius: 25px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;
-  -o-border-radius: 25px;
-  margin: 5px; }
+  -o-border-radius: 25px; }
 
 #message_submit {
   border: none;

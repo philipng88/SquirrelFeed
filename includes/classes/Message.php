@@ -185,7 +185,7 @@ class Message {
                 $count++;
             }
 
-            $is_unread_query = mysqli_query($this->con, "SELECT opened FROM messages WHERE user_to='$userLoggedIn' AND user_from='$username' ORDER BY id DESC");
+            $is_unread_query = mysqli_query($this->con, "SELECT * FROM messages WHERE (user_to='$userLoggedIn' AND user_from='$username') OR (user_from='$userLoggedIn' AND user_to='$username') ORDER BY id DESC");
             $row = mysqli_fetch_array($is_unread_query);
             $style = ($row['opened'] == 'no') ? "background-color: #DDEDFF;" : "";
 
@@ -194,6 +194,16 @@ class Message {
             $dots = (strlen($latest_message_details[1]) >= 12) ? "..." : "";
             $split = str_split($latest_message_details[1], 12);
             $split = $split[0] . $dots;
+
+            if ($row['opened'] === 'yes' && $row['user_from'] === $userLoggedIn && $row['user_to'] === $username) {
+                $latest_message_details[2] .= " ✓";
+            }
+
+            if ($row['opened'] === 'no' && $row['user_from'] === $userLoggedIn && $row['user_to'] === $username) {
+                $style = "";
+                $latest_message_details[2] .= " ←";
+            }
+
             $return_string .= "<a href='messages.php?u=$username'>
                                 <div class='user_found_messages' style='" . $style . "'>
                                 <img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>

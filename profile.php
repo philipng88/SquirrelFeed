@@ -107,9 +107,17 @@ if (isset($_POST['post_message'])) {
             </div>
             <div role="tabpanel" class="tab-pane fade" id="messages_div">
                 <?php 
+                $open_query = mysqli_query($con, "SELECT opened, id FROM messages WHERE user_from='$userLoggedIn' AND user_to='$username' ORDER BY id DESC LIMIT 1");
+                $latest_query_rec = mysqli_query($con, "SELECT id FROM messages WHERE user_to='$userLoggedIn' AND user_from='$username' ORDER BY id DESC LIMIT 1");
+                $check_message = mysqli_fetch_array($open_query);
+                $check_latest = mysqli_fetch_array($latest_query_rec);
+                $seen = $check_message['opened'] === 'yes' ? "Message read" : "";
                 echo "<h4>Your conversation with " . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
                 echo "<div class='loaded_messages' id='scroll_messages'>";
                     echo $message_obj->getMessages($username);
+                if ($check_message['id'] > $check_latest['id']) {
+                    echo "<div style='float:right; position:relative; bottom:5px; right:3px;' class='small text-muted'>" . $seen . "</div><br>";
+                }
                 echo "</div>";
                 ?>
 

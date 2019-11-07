@@ -68,6 +68,7 @@ if (isset($_SESSION['username'])) {
             $num_requests = $user_obj->getNumberOfFriendRequests();
             ?>
             <a href="<?php echo $userLoggedIn; ?>" data-toggle="tooltip" data-placement="bottom" title="My Profile">
+                <img src="<?php echo $user['profile_pic'] ?>" id="navProfilePic" alt="">
                 <?php echo $user['first_name']; ?>
             </a>
             <a href="index.php" data-toggle="tooltip" data-placement="bottom" title="Home">

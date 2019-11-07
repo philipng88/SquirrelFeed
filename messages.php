@@ -44,9 +44,18 @@ if (isset($_POST['post_message']) && $user_to !== $userLoggedIn) {
 <div class="main_column column" id="main_column">
     <?php 
     if ($user_to != "new") {
+        $open_query = mysqli_query($con, "SELECT opened, id FROM messages WHERE user_from='$userLoggedIn' AND user_to='$user_to' ORDER BY id DESC LIMIT 1");
+        $latest_query_rec = mysqli_query($con, "SELECT id FROM messages WHERE user_to='$userLoggedIn' AND user_from='$user_to' ORDER BY id DESC LIMIT 1");
+        $check_message = mysqli_fetch_array($open_query);
+        $check_latest = mysqli_fetch_array($latest_query_rec);
+        $seen = $check_message['opened'] === 'yes' ? "Message read" : "";
+
         echo "<h4>You and <a href='$user_to'>" . $user_to_obj->getFirstAndLastName() . "</a></h4><hr><br>";
         echo "<div class='loaded_messages' id='scroll_messages'>";
             echo $message_obj->getMessages($user_to);
+        if ($check_message['id'] > $check_latest['id']) {
+            echo "<div style='float:right; position:relative; bottom:5px; right:3px;' class='small text-muted'>" . $seen . "</div><br>";
+        }
         echo "</div>";
     } else {
         echo "<h4>New Message</h4>";
