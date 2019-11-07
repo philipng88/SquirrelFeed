@@ -20,6 +20,8 @@ if (isset($_GET['username'])) {
               <br>";
     }
     ?>
+    <hr>
+    <a href="requests.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back</a>
 </div>
 
 <!-- closing wrapper div -->

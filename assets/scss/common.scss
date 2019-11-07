@@ -21,9 +21,9 @@ a {
 .column {
     background-color: #fff;
     padding: 10px;
-    border: 1px solid #d3d3d3;
+    border: 1px solid $borders-boxes-gray;
     @include border-radius-five;
-    box-shadow: 2px 2px 1px #d3d3d3;
+    box-shadow: 2px 2px 1px $borders-boxes-gray;
     z-index: -1;
 }
 

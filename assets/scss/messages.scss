@@ -1,7 +1,7 @@
 #message_submit {
     border: none;
     @include border-radius-three;
-    background-color: #3498db;
+    background-color: $button-blue;
     font-family: 'Bellota-BoldItalic', sans-serif;
     color: #fff;
     text-shadow: #73b6e2 0.5px 0.5px 0;
@@ -17,7 +17,7 @@
     width: 80%;
     margin-right: 8px;
     @include border-radius-five;
-    border: 1px solid #d3d3d3;
+    border: 1px solid $borders-boxes-gray;
     font-size: 12px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 #my_message {
-    background-color: #3498db;
+    background-color: $button-blue;
     border-color: #2980b9;
     float: right;
 } 
@@ -56,10 +56,10 @@
 }
 
 .user_found_messages {
-    border-bottom: 1px solid #d3d3d3;
+    border-bottom: 1px solid $borders-boxes-gray;
     padding: 8px 8px 10px 8px;
     &:hover {
-        background-color: #d3d3d3;
+        background-color: $borders-boxes-gray;
     }
     img {
         height: 35px;

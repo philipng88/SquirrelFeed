@@ -20,7 +20,7 @@
         color: #616060;
         font-size: 14px;
         margin: 3px 3px 3px 5px;
-        border-color: #d3d3d3;
+        border-color: $borders-boxes-gray;
     }
     input[type="submit"] {
         border: none;
@@ -43,7 +43,7 @@
     background-color: transparent;
     border: none;
     font-size: 14px;
-    color: #3498db;
+    color: $button-blue;
     padding: 0;
     height: auto;
     width: auto;
