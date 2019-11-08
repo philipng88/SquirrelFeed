@@ -88,7 +88,7 @@ if (isset($_POST['register_button'])) {
             $check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
         }
 
-        $profile_pic = "assets/images/profile_pics/defaults/default.jpg";
+        $profile_pic = "assets/images/default_profile_picture.jpg";
         $query = mysqli_query($con, "INSERT INTO users VALUES (null, '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')");
         array_push($error_array, "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
 
